@@ -33,28 +33,30 @@ end
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect to "/tweets"
+      redirect to '/tweets'
     else
       redirect to '/signup'
     end
   end
 
+  get '/users/:slug' do
+   @user = find_by_slug(params[:slug])
+    if logged_in?
+      erb :"/users/show"
+    else
+      redirect to '/login'
+    end
+  end
+
   get '/logout' do
   if logged_in?
-    session.clear
-    redirect to '/login'
+      session.clear
+      redirect to '/login'
   else
     redirect to '/'
    end
  end
 
-   get '/users/:slug' do
-    @user = find_by_slug(params[:slug])
-     if logged_in?
-       erb :"/users/show"
-     else
-       redirect to '/login'
-     end
-   end
+
 
 end
