@@ -1,0 +1,14 @@
+<% if logged_in? %>
+<form method="POST" action="/tweets">
+<p><label>Your Tweet</label>
+  <br /><textarea
+   name="content" id="tweet" maxlength="140" placeholder="140 characters or less..."></textarea>
+<p>
+<input type="submit" value="submit" />
+</form></p>
+
+<% else %>
+<a href="/login"><button type="button">Log In</button></a>
+<a href="/signup"><button type="button">Sign Up</button></a>
+
+<% end %>
